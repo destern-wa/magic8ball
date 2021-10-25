@@ -22,9 +22,13 @@ def get_response(question: str) -> str:
 def main():
     print("Welcome to the magic 8-ball")
     print("+++++++++++++++++++++++++++")
-    question = input("Ask a question\n> ")
-    print("... the magic 8-ball says ... ")
-    print(get_response("Example"))
+    while True:
+        question = input("\nAsk your question\n> ")
+        print("  ... the magic 8-ball says ... ", end="")
+        print(get_response(question))
+        if input("Ask another question [y/n]? ").lower() != 'y':
+            print("\n### Goodbye ###")
+            break
 
 
 if __name__ == '__main__':

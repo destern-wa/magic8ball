@@ -1,4 +1,5 @@
 import socket
+from response import Response
 
 # Create a socket object
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -32,10 +33,11 @@ while True:
             break
 
         data_from_client += data.decode()
-        print("Data from client:", data_from_client)
 
-        print("Sending message back...")
-        connection.send("You are LEGEND".encode())
+        print("Data from client:", data_from_client)
+        response = Response.get(data_from_client)
+        print("Sending message back: "+ response)
+        connection.send(response.encode())
 
     connection.close()
     print('client disconnected')
